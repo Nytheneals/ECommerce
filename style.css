@@ -1,0 +1,55 @@
+ /* Note: do not edit the HTML for this exercise
+some base styles are already included externally
+
+
+ /* 1. Place the two .columns next to each other (.column--left on the left side and .column--right on the right side), with the footer beneath them. Each column should take up 1/2 of screen. */
+
+ .column {
+   width: 50%;
+ }
+
+ .column--right {
+   float: right;
+ }
+
+ /* 2. Place the select in the direct center (vertically & horizontally) of the left column  */
+
+ .column--left {
+   position: relative;
+ }
+
+ .column--left select {
+   position: absolute;
+   top: 45%;
+   left: 40%;
+ }
+
+ /* 3. Place the 'price' element 20px from the right and 20px from the bottom of the right column */
+
+ .column--right {
+   position: relative;
+ }
+
+ .price {
+   position: absolute;
+   right: 20px;
+   bottom: 20px;
+ }
+
+ .price:hover {
+   background: orange;
+ }
+
+ /* 4. Make the 'price' element's background orange when you hover over it */
+
+ .column--right div.price:hover {
+   background: orange;
+ }
+
+ /* 5. Make the 'price' element's background red when you hover over the right column. */
+
+ .column--right:hover .price {
+   background: red;
+ }
+
+ /* Make sure #4 still works! */
