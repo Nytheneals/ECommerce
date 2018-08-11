@@ -19,6 +19,7 @@
   "dependencies": {
     "deep-extend": "^0.5.1",
     "easy-extender": "^2.3.2",
+    "jsdom-quokka-plugin": "^1.0.13",
     "lodash": "^4.17.10"
   }
 }
