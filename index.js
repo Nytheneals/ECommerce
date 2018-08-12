@@ -22,7 +22,7 @@ renderPrice();
  * Expected value: $152.96
  */
 // TOTALS WITHOUT SHIPPING
-let total = cart.reduce((prev, next) => prev + next.price, 0);
+const total = cart.reduce((prev, next) => prev + next.price, 0);
 // console.log(total);
 renderPrice(total);
 /*
@@ -34,30 +34,24 @@ renderPrice(total);
 const shippingCost = document.querySelector('select');
 
 let vaj = 0;
-
-shippingCost.addEventListener('change', () => {
-  console.log(parseInt(shippingCost.value));
-  vaj = parseInt(shippingCost.value);
-  const ret = cart.filter(item => item.price > 50).map(dog => dog.price + vaj);
-  const notAbove50 = cart.filter(item => item.price < 50).map(dog => dog.price);
-  const totald = [...ret, ...notAbove50];
-  const realTotal = totald.reduce((prev, next) => prev + next, 0);
-  console.log(ret);
-  console.log(notAbove50);
-  console.log(totald);
-  console.log(realTotal);
-  console.log(total);
-
-  total = totald.reduce((prev, next) => prev + next, 0);
+shippingCost.addEventListener('change', e => {
+  console.log(e.returnValue);
+  if (e.returnValue) {
+    vaj = parseInt(shippingCost.value);
+    console.log(parseInt(shippingCost.value));
+    vaj = parseInt(shippingCost.value);
+    const ret = cart.filter(item => item.price > 50).map(dog => dog.price + vaj);
+    const notAbove50 = cart.filter(item => item.price < 50).map(dog => dog.price);
+    const totald = [...ret, ...notAbove50];
+    const realTotal = totald.reduce((prev, next) => prev + next, 0);
+    console.log(ret);
+    console.log(notAbove50);
+    console.log(totald);
+    console.log(realTotal);
+    console.log(total);
+    renderPrice(realTotal);
+  }
   return total;
 });
 
 console.log(vaj);
-
-// const finalTotal = function () {
-//  if (shippingFare) {
-//  return renderPrice(total) + shippingFare;
-//  }
-// }
-
-// console.log(finalTotal())
