@@ -1,11 +1,15 @@
 /* Note: do not edit the HTML for this exercise
 some base styles are already included externally */
 
+/* Targeting the html (which is the root) */
+
 :root {
   --relative: relative;
 }
 
 /* 1. Place the two .columns next to each other (.column--left on the left side and .column--right on the right side), with the footer beneath them. Each column should take up 1/2 of screen. */
+
+/* Used some css varibles too */
 
 .column {
   width: 50%;
@@ -22,6 +26,8 @@ some base styles are already included externally */
 .column--left select {
   position: absolute;
 }
+
+/* Used a little bit of css grid, to help me center perfectly */
 
 .column--left {
   display: grid;
