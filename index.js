@@ -31,7 +31,7 @@ renderPrice(totalWithoutShipping);
  */
 
 let selectedShippingPrice = null;
-// I PUT THIS IN AVRIABLE BECAUSE IT COULD BE CHANGED BY ADMINISTRATOR
+// I PUT THIS IN AVARIABLE BECAUSE IT COULD BE CHANGED BY ADMINISTRATOR
 const shippingMark = 50;
 // ABOVE SHIPPING_MARK ARRAY
 // This will return true if we find any values more than the selected shipping price
