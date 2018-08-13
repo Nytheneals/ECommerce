@@ -4,7 +4,7 @@ const cart = [
   { name: 'blender', price: 55.12 },
   { name: 'lamp', price: 33.34 },
   { name: 'bowl', price: 12.5 },
-  { name: 'dog bed', price: 52 },
+  { name: 'item bed', price: 52 },
 ];
 
 // Think of this as a method from some external library -
@@ -22,36 +22,37 @@ renderPrice();
  * Expected value: $152.96
  */
 // TOTALS WITHOUT SHIPPING
-const total = cart.reduce((prev, next) => prev + next.price, 0);
-// console.log(total);
-renderPrice(total);
+const totalWithoutShipping = cart.reduce((prev, next) => prev + next.price, 0);
+renderPrice(totalWithoutShipping);
 /*
  * 2) When you select one of the 'shipping options',
  * add the shipping cost to every item OVER $50.
  * Expected values: $172.96, $182.96
  */
-// VALUE LOGGED
+
+let selectedShippingPrice = null;
+// I PUT THIS IN AVRIABLE BECAUSE IT COULD BE CHANGED BY ADMINISTRATOR
+const shippingMark = 50;
+// ABOVE SHIPPING_MARK ARRAY
+// This will return true if we find any values more than the selected shipping price
+const isAbove50 = cart.filter(item => item.price > shippingMark);
+// BELOW SHIPPING_MARK ARRAY
+// This will return values(prices) if we find any values less than the selected shipping price
+const isBelowShippingMark = cart.filter(item => item.price < shippingMark).map(item => item.price);
+
+// Getting the select element
 const shippingCost = document.querySelector('select');
-
-let vaj = 0;
 shippingCost.addEventListener('change', e => {
-  console.log(e.returnValue);
-  if (e.returnValue) {
-    vaj = parseInt(shippingCost.value);
-    console.log(parseInt(shippingCost.value));
-    vaj = parseInt(shippingCost.value);
-    const ret = cart.filter(item => item.price > 50).map(dog => dog.price + vaj);
-    const notAbove50 = cart.filter(item => item.price < 50).map(dog => dog.price);
-    const totald = [...ret, ...notAbove50];
-    const realTotal = totald.reduce((prev, next) => prev + next, 0);
-    console.log(ret);
-    console.log(notAbove50);
-    console.log(totald);
-    console.log(realTotal);
-    console.log(total);
-    renderPrice(realTotal);
+  //  (e.returnValue) couldn't work with mozilla firefox, according to my tests, that's why i used (e.isTrusted) because it worked for safari, mozilla firefox  and chrome
+  // This will check if we actually have any change in the value, and if so it will run the code in the "if" block
+  if (e.isTrusted) {
+    selectedShippingPrice = parseInt(shippingCost.value);
+    // we add the shipping selected
+    const above50 = isAbove50.map(item => item.price + selectedShippingPrice);
+    const newCart = [...above50, ...isBelowShippingMark];
+    // getting the total of the shipping
+    const totalWithShipping = newCart.reduce((prev, next) => prev + next, 0);
+    // then finally we call the render function
+    renderPrice(totalWithShipping);
   }
-  return total;
 });
-
-console.log(vaj);

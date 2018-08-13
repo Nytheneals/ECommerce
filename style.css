@@ -1,55 +1,50 @@
- /* Note: do not edit the HTML for this exercise
-some base styles are already included externally
+/* Note: do not edit the HTML for this exercise
+some base styles are already included externally */
 
+:root {
+  --relative: relative;
+}
 
- /* 1. Place the two .columns next to each other (.column--left on the left side and .column--right on the right side), with the footer beneath them. Each column should take up 1/2 of screen. */
+/* 1. Place the two .columns next to each other (.column--left on the left side and .column--right on the right side), with the footer beneath them. Each column should take up 1/2 of screen. */
 
- .column {
-   width: 50%;
- }
+.column {
+  width: 50%;
+  position: var(--relative);
+}
 
- .column--right {
-   float: right;
- }
+.column--right {
+  float: right;
+}
 
- /* 2. Place the select in the direct center (vertically & horizontally) of the left column  */
+/* 2. Place the select in the direct center (vertically & horizontally) of the left column  */
 
- .column--left {
-   position: relative;
- }
+.price,
+.column--left select {
+  position: absolute;
+}
 
- .column--left select {
-   position: absolute;
-   top: 45%;
-   left: 40%;
- }
+.column--left {
+  display: grid;
+  place-items: center;
+}
 
- /* 3. Place the 'price' element 20px from the right and 20px from the bottom of the right column */
+/* 3. Place the 'price' element 20px from the right and 20px from the bottom of the right column */
 
- .column--right {
-   position: relative;
- }
+.price {
+  right: 20px;
+  bottom: 20px;
+}
 
- .price {
-   position: absolute;
-   right: 20px;
-   bottom: 20px;
- }
+/* 4. Make the 'price' element's background orange when you hover over it */
 
- .price:hover {
-   background: orange;
- }
+.column--right div.price:hover {
+  background: orange;
+}
 
- /* 4. Make the 'price' element's background orange when you hover over it */
+/* 5. Make the 'price' element's background red when you hover over the right column. */
 
- .column--right div.price:hover {
-   background: orange;
- }
+.column--right:hover .price {
+  background: red;
+}
 
- /* 5. Make the 'price' element's background red when you hover over the right column. */
-
- .column--right:hover .price {
-   background: red;
- }
-
- /* Make sure #4 still works! */
+/* Make sure #4 still works! */
