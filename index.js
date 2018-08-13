@@ -42,17 +42,14 @@ const isBelowShippingMark = cart.filter(item => item.price < shippingMark).map(i
 
 // Getting the select element
 const shippingCost = document.querySelector('select');
-shippingCost.addEventListener('change', e => {
-  //  (e.returnValue) couldn't work with mozilla firefox, according to my tests, that's why i used (e.isTrusted) because it worked for safari, mozilla firefox  and chrome
-  // This will check if we actually have any change in the value, and if so it will run the code in the "if" block
-  if (e.isTrusted) {
-    selectedShippingPrice = parseInt(shippingCost.value);
-    // we add the shipping selected
-    const above50 = isAbove50.map(item => item.price + selectedShippingPrice);
-    const newCart = [...above50, ...isBelowShippingMark];
-    // getting the total of the shipping
-    const totalWithShipping = newCart.reduce((prev, next) => prev + next, 0);
-    // then finally we call the render function
-    renderPrice(totalWithShipping);
-  }
+shippingCost.addEventListener('change', () => {
+  selectedShippingPrice = parseInt(shippingCost.value);
+  // we add the shipping selected
+  const above50 = isAbove50.map(item => item.price + selectedShippingPrice);
+  const newCart = [...above50, ...isBelowShippingMark];
+  // getting the total of the shipping
+  const totalWithShipping = newCart.reduce((prev, next) => prev + next, 0);
+  // then finally we call the render function
+  renderPrice(totalWithShipping);
+  // }
 });
